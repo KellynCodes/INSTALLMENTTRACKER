@@ -161,7 +161,6 @@
             {
                 Console.WriteLine("Entered number is not valid.\n > Enter only numbers");
                 Yearly();
-
             }
 
         }
