@@ -40,9 +40,9 @@
                         break;
                         case (int)plan.biWeekly: Installments.biWeekly();
                         break;
-                    case (int)plan.monthly: Console.Write("Monthly");
+                    case (int)plan.monthly: Installments.monthly();
                         break;
-                    case (int)plan.yearly: Console.Write("Yearly");
+                    case (int)plan.yearly: Installments.Yearly();
                         break;
                     default: Console.WriteLine("Wrong input");
                         break;

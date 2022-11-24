@@ -18,7 +18,7 @@
 
         //Weekly payment code implementations
         public static void daily()
-        { 
+        {
             Tracker tracker = new Tracker();
             var Customer = tracker.customerName();
             var Product = tracker.productName();
@@ -27,8 +27,8 @@
 
             Console.WriteLine("How much do your want to pay weekly");
             string enteredAmount = Console.ReadLine();
-            if (decimal.TryParse(enteredAmount, out decimal Amount)) 
-            { 
+            if (decimal.TryParse(enteredAmount, out decimal Amount))
+            {
                 decimal dividedAmount = (Price / Amount);
                 Date = DateTime.Now.AddDays((double)dividedAmount);
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every day for {dividedAmount} days");
@@ -44,24 +44,24 @@
             }
 
         }
-      
+
 
         public static void weekly()
         {
             Tracker tracker = new Tracker();
-            var Customer = tracker.customerName(); 
+            var Customer = tracker.customerName();
             var Product = tracker.productName();
             var Price = tracker.collectPrice();
             DateTime Date;
 
-        Console.WriteLine("How much do your want to pay weekly");
+            Console.WriteLine("How much do your want to pay weekly");
             string enteredAmount = Console.ReadLine();
             if (decimal.TryParse(enteredAmount, out decimal Amount))
             {
                 decimal dividedAmount = (Price / Amount);
                 Date = DateTime.Now.AddDays((double)dividedAmount * (double)week.addSevenToGiveWeek);
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every week for {dividedAmount} weeks");
-                Console.WriteLine($"The product {Customer} purchased is {Product}"); 
+                Console.WriteLine($"The product {Customer} purchased is {Product}");
                 decimal calculateAmount = (decimal)percentages.weeklyPercentage * dividedAmount;
                 decimal totalAmount = Price + calculateAmount;
                 Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.weeklyPercentage}% interest");
@@ -104,5 +104,66 @@
                 biWeekly();
             }
         }
+
+
+        //monthly 
+        public static void monthly()
+        {
+            Tracker tracker = new Tracker();
+            var Customer = tracker.customerName();
+            var Product = tracker.productName();
+            var Price = tracker.collectPrice();
+            DateTime Date;
+
+            Console.WriteLine("How much do your want to pay monthly");
+            string enteredAmount = Console.ReadLine();
+            if (decimal.TryParse(enteredAmount, out decimal Amount)) 
+            {
+                decimal dividedAmount = (Price / Amount); 
+                Date = DateTime.Now.AddMonths((int)dividedAmount);
+                Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every month for {dividedAmount} months");
+                Console.WriteLine($"The product {Customer} purchased is {Product}");
+                decimal calculateAmount = (decimal)percentages.monthlyPercentage * dividedAmount;
+                decimal totalAmount = Price + calculateAmount;
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.monthlyPercentage}% interest");
+            }
+            else
+            {
+                Console.WriteLine("Entered number is not valid.\n > Enter only numbers");
+                monthly();
+            }
+
         }
+
+
+        //Yearly 
+        public static void Yearly()
+        {
+            Tracker tracker = new Tracker();
+            var Customer = tracker.customerName();
+            var Product = tracker.productName();
+            var Price = tracker.collectPrice();
+            DateTime Date; 
+
+            Console.WriteLine("How much do your want to pay yearly");
+            string enteredAmount = Console.ReadLine();
+            if (decimal.TryParse(enteredAmount, out decimal Amount)) 
+            { 
+                decimal dividedAmount = (Price / Amount); 
+                Date = DateTime.Now.AddYears((int)dividedAmount);
+                Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every year for {dividedAmount} years");
+                Console.WriteLine($"The product {Customer} purchased is {Product}");
+                decimal calculateAmount = (decimal)percentages.yearlyPercentage * dividedAmount;
+                decimal totalAmount = Price + calculateAmount;
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.yearlyPercentage}% interest");
+            }
+            else
+            {
+                Console.WriteLine("Entered number is not valid.\n > Enter only numbers");
+                Yearly();
+            }
+
+        }
+
+    }
 }
