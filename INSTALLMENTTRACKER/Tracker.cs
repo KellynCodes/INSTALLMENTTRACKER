@@ -36,10 +36,15 @@
 
         public decimal CollectPrice()
         {
-            Console.WriteLine("Enter product price");
+          Start: Console.WriteLine("Enter product price");
             string? price = Console.ReadLine();
             if (decimal.TryParse(price, out decimal productPrice))
             {
+                if (productPrice < 10)
+                {
+                    Console.WriteLine($"Product price cannot be below 10");
+                    goto Start;
+                }
                 _price = productPrice;
             }
             else

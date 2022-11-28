@@ -4,12 +4,13 @@
     {
         DateTime _date;
 
-        private enum week
+
+        private enum Week
         {
             addSevenToGiveWeek = 7,
             addFourtenToGiveTwoWeeks = 14
         }
-        private enum percentages
+        private enum Percentages
         {
             dailyPercentage = 5,
             weeklyPercentage = 10,
@@ -21,17 +22,32 @@
         //Weekly payment code implementations
         public static void Daily()
         {
-            Tracker tracker = new Tracker();
+            Tracker tracker = new();
             var Customer = tracker.CustomerName();
             var Product = tracker.ProductName();
             var Price = tracker.CollectPrice();
             DateTime Date;
 
         Start: Console.WriteLine("How much do your want to pay Daily");
-            string enteredAmount = Console.ReadLine();
+            string enteredAmount = Console.ReadLine() ?? string.Empty;
             if (decimal.TryParse(enteredAmount, out decimal Amount))
             {
-                if(Amount % 2 == 0)
+                if (Amount > Price)
+                {
+                    Console.WriteLine($"Amount can not be greater than Price [{Price}]");
+                    goto Start;
+                }
+                if (Amount < 10)
+                {
+                    Console.WriteLine($"Amount should be greater than 10");
+                    goto Start;
+                }
+                if (Amount == Price)
+                {
+                    Console.WriteLine($"Amount should be less than product price. [{Price}]");
+                    goto Start;
+                }
+                if (Amount % 2 == 0)
                 {
                     
                 decimal dividedAmount = (Price / Amount);
@@ -39,9 +55,9 @@
                 Console.Clear();
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every day for {dividedAmount} days");
                 Console.WriteLine($"The product {Customer} purchased is {Product}");
-                decimal calculateAmount = (decimal)percentages.dailyPercentage * dividedAmount;
+                decimal calculateAmount = (decimal)Percentages.dailyPercentage * dividedAmount;
                 decimal totalAmount = Price + calculateAmount;
-                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.dailyPercentage}% interest");
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)Percentages.dailyPercentage}% interest");
                 }
                 else
                 {
@@ -61,27 +77,42 @@
 
         public static void Weekly()
         {
-            Tracker tracker = new Tracker();
+            Tracker tracker = new();
             var Customer = tracker.CustomerName();
             var Product = tracker.ProductName();
             var Price = tracker.CollectPrice();
             DateTime Date;
 
-            Start: Console.WriteLine("How much do your want to pay weekly");
-            string enteredAmount = Console.ReadLine();
+        Start: Console.WriteLine("How much do your want to pay weekly");
+            string enteredAmount = Console.ReadLine() ?? String.Empty;
             if (decimal.TryParse(enteredAmount, out decimal Amount))
             {
+                if (Amount > Price)
+                {
+                    Console.WriteLine($"Amount can not be greater than Price [{Price}]");
+                    goto Start;
+                }
+                if (Amount < 10)
+                {
+                    Console.WriteLine($"Amount should be greater than 10");
+                    goto Start;
+                }
+                if (Amount == Price)
+                {
+                    Console.WriteLine($"Amount should be less than product price. [{Price}]");
+                    goto Start;
+                }
                 if (Amount % 2 == 0)
                 {
 
                     decimal dividedAmount = (Price / Amount);
-                Date = DateTime.Now.AddDays((double)dividedAmount * (double)week.addSevenToGiveWeek);
+                Date = DateTime.Now.AddDays((double)dividedAmount * (double)Week.addSevenToGiveWeek);
                 Console.Clear();
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every week for {dividedAmount} weeks");
                 Console.WriteLine($"The product {Customer} purchased is {Product}");
-                decimal calculateAmount = (decimal)percentages.weeklyPercentage * dividedAmount;
+                decimal calculateAmount = (decimal)Percentages.weeklyPercentage * dividedAmount;
                 decimal totalAmount = Price + calculateAmount;
-                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.weeklyPercentage}% interest");
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)Percentages.weeklyPercentage}% interest");
                 }
                 else
                 {
@@ -101,7 +132,7 @@
         //Weekly payment code implementations
         public static void BiWeekly()
         {
-            Tracker tracker = new Tracker();
+            Tracker tracker = new();
             var Customer = tracker.CustomerName();
             var Product = tracker.ProductName();
             var Price = tracker.CollectPrice();
@@ -109,21 +140,36 @@
             DateTime Date;
 
             Start: Console.WriteLine("How much do your want to pay in 2 weeks");
-            string enteredAmount = Console.ReadLine();
+            string enteredAmount = Console.ReadLine() ?? String.Empty;
             if (decimal.TryParse(enteredAmount, out decimal Amount))
             {
+                if (Amount > Price)
+                {
+                    Console.WriteLine($"Amount can not be greater than Price [{Price}]");
+                    goto Start;
+                }
+                if (Amount < 10)
+                {
+                    Console.WriteLine($"Amount should be greater than 10");
+                    goto Start;
+                }
+                if (Amount == Price)
+                {
+                    Console.WriteLine($"Amount should be less than product price. [{Price}]");
+                    goto Start;
+                }
                 if (Amount % 2 == 0)
                 {
 
                     decimal dividedAmount = (Price / Amount);
                 decimal getBiWeekly = dividedAmount + dividedAmount;
-                Date = DateTime.Now.AddDays((double)dividedAmount * (double)week.addFourtenToGiveTwoWeeks);
+                Date = DateTime.Now.AddDays((double)dividedAmount * (double)Week.addFourtenToGiveTwoWeeks);
                 Console.Clear();
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every  2 weeks for {getBiWeekly} weeks");
                 Console.WriteLine($"The product {Customer} purchased is {Product}");
-                decimal calculateAmount = (decimal)percentages.biWeeklyPercentage * getBiWeekly;
+                decimal calculateAmount = (decimal)Percentages.biWeeklyPercentage * getBiWeekly;
                 decimal totalAmount = Price + calculateAmount;
-                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.biWeeklyPercentage}% interest");
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)Percentages.biWeeklyPercentage}% interest");
                 }
                 else
                 {
@@ -142,16 +188,31 @@
         //monthly 
         public static void Monthly()
         {
-            Tracker tracker = new Tracker();
+            Tracker tracker = new();
             var Customer = tracker.CustomerName();
             var Product = tracker.ProductName();
             var Price = tracker.CollectPrice();
             DateTime Date;
 
         Start: Console.WriteLine("How much do your want to pay monthly");
-            string enteredAmount = Console.ReadLine();
+            string enteredAmount = Console.ReadLine() ?? String.Empty;
             if (decimal.TryParse(enteredAmount, out decimal Amount)) 
             {
+                if (Amount > Price)
+                {
+                    Console.WriteLine($"Amount can not be greater than Price [{Price}]");
+                    goto Start;
+                }
+                if (Amount < 10)
+                {
+                    Console.WriteLine($"Amount should be greater than 10");
+                    goto Start;
+                }
+                if (Amount == Price)
+                {
+                    Console.WriteLine($"Amount should be less than product price. [{Price}]");
+                    goto Start;
+                }
                 if (Amount % 2 == 0)
                 {
                         decimal dividedAmount = (Price / Amount);
@@ -162,16 +223,16 @@
                     }
                     catch (Exception exception)
                     {
-
-                        Console.WriteLine(exception.Message);Console.WriteLine("The amount you choosed to pay every Month was either too Large or small to divide the product price. Please try again");
+                        Console.Clear();
+                        Console.WriteLine(exception.Message);Console.WriteLine($"The amount you choosed to pay every Month was either too Large or small to divide {Price}. Please try again");
                         goto Start;
                     }
                 Console.Clear();
                 Console.WriteLine($"{Customer} due pay date will be on {Date} and {Customer}  have to pay {enteredAmount}  every month for {dividedAmount} months");
                 Console.WriteLine($"The product {Customer} purchased is {Product}");
-                decimal calculateAmount = (decimal)percentages.monthlyPercentage * dividedAmount;
+                decimal calculateAmount = (decimal)Percentages.monthlyPercentage * dividedAmount;
                 decimal totalAmount = Price + calculateAmount;
-                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)percentages.monthlyPercentage}% interest");
+                Console.WriteLine($"The total amount {Customer} will pay on {Date} is: {totalAmount} on {(int)Percentages.monthlyPercentage}% interest");
                 }
                 else
                 {
@@ -191,7 +252,7 @@
         //Yearly 
         public static void Yearly()
         {
-            Tracker tracker = new Tracker();
+            Tracker tracker = new();
             Installments installments = new();
             var Customer = tracker.CustomerName();
             var Product = tracker.ProductName();
@@ -199,8 +260,23 @@
 
         Start: Console.WriteLine("How much do your want to pay yearly");
             string enteredAmount = Console.ReadLine() ?? String.Empty;
-            if (decimal.TryParse(enteredAmount, out decimal Amount)) 
+            if (decimal.TryParse(enteredAmount, out decimal Amount))
             {
+                if (Amount > Price)
+                {
+                    Console.WriteLine($"Amount can not be greater than Price [{Price}]");
+                    goto Start;
+                }
+                if (Amount < 10)
+                {
+                    Console.WriteLine($"Amount should be greater than 10");
+                    goto Start;
+                }
+                if(Amount == Price)
+                {
+                    Console.WriteLine($"Amount should be less than product price. [{Price}]");
+                    goto Start;
+                }
                 if (Amount % 2 == 0)
                 {
                     decimal dividedAmount = (Price / Amount);
@@ -219,9 +295,9 @@
                 Console.Clear();
                 Console.WriteLine($"{Customer} due pay date will be on {installments._date} and {Customer}  have to pay {enteredAmount}  every year for {dividedAmount} years");
                 Console.WriteLine($"The product {Customer} purchased is {Product}");
-                decimal calculateAmount = (decimal)percentages.yearlyPercentage * dividedAmount;
+                decimal calculateAmount = (decimal)Percentages.yearlyPercentage * dividedAmount;
                 decimal totalAmount = Price + calculateAmount;
-                Console.WriteLine($"The total amount {Customer} will pay on {installments._date} is: {totalAmount} on {(int)percentages.yearlyPercentage}% interest");
+                Console.WriteLine($"The total amount {Customer} will pay on {installments._date} is: {totalAmount} on {(int)Percentages.yearlyPercentage}% interest");
                 }
                 else
                 {

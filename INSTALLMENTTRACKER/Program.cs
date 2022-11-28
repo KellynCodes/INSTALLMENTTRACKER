@@ -3,7 +3,7 @@
     internal class Program
     {
 
-        private enum plan
+        private enum Plan
         {
             Daily = 1,
             weekly,
@@ -33,19 +33,19 @@
 
                     switch (userChoice)
                     {
-                        case (int)plan.Daily:
+                        case (int)Plan.Daily:
                             Installments.Daily();
                             break;
-                        case (int)plan.weekly:
+                        case (int)Plan.weekly:
                             Installments.Weekly();
                             break;
-                        case (int)plan.biWeekly:
+                        case (int)Plan.biWeekly:
                             Installments.BiWeekly();
                             break;
-                        case (int)plan.monthly:
+                        case (int)Plan.monthly:
                             Installments.Monthly();
                             break;
-                        case (int)plan.yearly:
+                        case (int)Plan.yearly:
                             Installments.Yearly();
                             break;
                         default:
