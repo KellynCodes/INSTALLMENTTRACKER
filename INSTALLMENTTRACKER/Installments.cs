@@ -1,4 +1,6 @@
-﻿namespace INSTALLMENTTRACKER
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace INSTALLMENTTRACKER
 {
     internal class Installments
     {
@@ -19,6 +21,13 @@
             yearlyPercentage = 25,
         }
 
+        private enum ValidatorNumbers : int
+        {
+            zero = 0,
+            DivisibleBytwo = 2,
+            MinumAllowedAmount = 10,
+        }
+
         //Weekly payment code implementations
         public static void Daily()
         {
@@ -37,9 +46,9 @@
                     Console.WriteLine($"Amount can not be greater than Price [{Price}]");
                     goto Start;
                 }
-                if (Amount < 10)
+                if (Amount < (int)ValidatorNumbers.MinumAllowedAmount)
                 {
-                    Console.WriteLine($"Amount should be greater than 10");
+                    Console.WriteLine($"Amount should be greater than 9");
                     goto Start;
                 }
                 if (Amount == Price)
@@ -47,7 +56,7 @@
                     Console.WriteLine($"Amount should be less than product price. [{Price}]");
                     goto Start;
                 }
-                if (Amount % 2 == 0)
+                if (Amount % (int)ValidatorNumbers.DivisibleBytwo == (int)ValidatorNumbers.zero)
                 {
                     
                 decimal dividedAmount = (Price / Amount);
@@ -92,9 +101,9 @@
                     Console.WriteLine($"Amount can not be greater than Price [{Price}]");
                     goto Start;
                 }
-                if (Amount < 10)
+                if (Amount < (int)ValidatorNumbers.MinumAllowedAmount)
                 {
-                    Console.WriteLine($"Amount should be greater than 10");
+                    Console.WriteLine($"Amount should be greater than 9");
                     goto Start;
                 }
                 if (Amount == Price)
@@ -102,7 +111,7 @@
                     Console.WriteLine($"Amount should be less than product price. [{Price}]");
                     goto Start;
                 }
-                if (Amount % 2 == 0)
+                if (Amount % (int)ValidatorNumbers.DivisibleBytwo == (int)ValidatorNumbers.zero)
                 {
 
                     decimal dividedAmount = (Price / Amount);
@@ -128,9 +137,9 @@
 
         }
 
-
-        //Weekly payment code implementations
-        public static void BiWeekly()
+ 
+    //Weekly payment code implementations
+    public static void BiWeekly()
         {
             Tracker tracker = new();
             var Customer = tracker.CustomerName();
@@ -148,9 +157,9 @@
                     Console.WriteLine($"Amount can not be greater than Price [{Price}]");
                     goto Start;
                 }
-                if (Amount < 10)
+                if (Amount < (int)ValidatorNumbers.MinumAllowedAmount)
                 {
-                    Console.WriteLine($"Amount should be greater than 10");
+                    Console.WriteLine($"Amount should be greater than 9");
                     goto Start;
                 }
                 if (Amount == Price)
@@ -158,7 +167,7 @@
                     Console.WriteLine($"Amount should be less than product price. [{Price}]");
                     goto Start;
                 }
-                if (Amount % 2 == 0)
+                if (Amount % (int)ValidatorNumbers.DivisibleBytwo == (int)ValidatorNumbers.zero)
                 {
 
                     decimal dividedAmount = (Price / Amount);
@@ -203,9 +212,9 @@
                     Console.WriteLine($"Amount can not be greater than Price [{Price}]");
                     goto Start;
                 }
-                if (Amount < 10)
+                if (Amount < (int)ValidatorNumbers.MinumAllowedAmount)
                 {
-                    Console.WriteLine($"Amount should be greater than 10");
+                    Console.WriteLine($"Amount should be greater than 9");
                     goto Start;
                 }
                 if (Amount == Price)
@@ -213,9 +222,10 @@
                     Console.WriteLine($"Amount should be less than product price. [{Price}]");
                     goto Start;
                 }
-                if (Amount % 2 == 0)
+                if (Amount % (int)ValidatorNumbers.DivisibleBytwo == (int)ValidatorNumbers.zero)
                 {
-                        decimal dividedAmount = (Price / Amount);
+
+                    decimal dividedAmount = (Price / Amount);
                     try
                     {
                 Date = DateTime.Now.AddMonths((int)dividedAmount);
@@ -267,18 +277,19 @@
                     Console.WriteLine($"Amount can not be greater than Price [{Price}]");
                     goto Start;
                 }
-                if (Amount < 10)
+                if (Amount < (int)ValidatorNumbers.MinumAllowedAmount)
                 {
-                    Console.WriteLine($"Amount should be greater than 10");
+                    Console.WriteLine($"Amount should be greater than 9");
                     goto Start;
                 }
-                if(Amount == Price)
+                if (Amount == Price)
                 {
                     Console.WriteLine($"Amount should be less than product price. [{Price}]");
                     goto Start;
                 }
-                if (Amount % 2 == 0)
+                if (Amount % (int)ValidatorNumbers.DivisibleBytwo == (int)ValidatorNumbers.zero)
                 {
+
                     decimal dividedAmount = (Price / Amount);
                     try
                     {
