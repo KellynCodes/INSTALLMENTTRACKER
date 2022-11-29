@@ -5,11 +5,11 @@ __This app is build in mind, a seller who fears to accept payment by installamen
 :100: <i>This app helps the user calculate the date customer will make the final payment and amount customer will pay as interest. :gift: :biking_man:</i><br />
 
 # :arrow_up_small: Extra features of this app
-* [*]  Perfect exception and error handling.
+- [x]  Perfect exception and error handling.
     * With try/Catch block. 
     * TryParse method.
     * With C# goto method.
-* [ ] Unbreakable codes.
+- [x] Unbreakable codes.
     * All users inputs are validated vigorously.
     * All the system exception that may occur are handled carefully.
 
